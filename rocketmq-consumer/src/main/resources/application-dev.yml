@@ -1,0 +1,61 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/ksg_test?useSSL=false&autoReconnect=true&failOverReadOnly=false&useUnicode=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    druid:
+      max-active: 10
+      min-idle: 1
+      max-wait: 5000
+      filters: stat,wall,slf4j
+      web-stat-filter.enabled: true
+      stat-view-servlet:
+        enabled: true
+        login-username: root
+        login-password: 123456
+        allow: 127.0.0.1
+
+  cloud:
+    stream:
+      rocketmq:
+        binder.name-server: 127.0.0.1:9876
+        bindings:
+          output1:
+            consumer:
+              orderly: true
+          input2:
+            consumer:
+              tags: tagStr
+              orderly: false
+          input3:
+            consumer:
+              tags: tagObj
+      bindings:
+        input1:
+          group: test-group1
+          destination: test-topic
+          content-type: text/plain
+        input2:
+          group: test-group2
+          destination: test-topic
+          content-type: text/plain
+          consumer:
+            concurrency: 20
+            maxAttempts: 1
+        input3:
+          group: test-group3
+          destination: test-topic
+          content-type: application/json
+          consumer:
+            concurrency: 20
+        input4:
+          group: transaction-group
+          destination: TransactionTopic
+          content-type: text/plain
+          consumer:
+            concurrency: 5
+        input5:
+          group: pull-topic-group
+          destination: pull-topic
+          content-type: text/plain

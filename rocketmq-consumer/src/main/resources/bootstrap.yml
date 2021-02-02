@@ -1,0 +1,15 @@
+server:
+  port: 18082
+spring:
+  application:
+    name: rocketmq-consumer
+  profiles:
+    active: '@profiles.active@'
+  cloud:
+    nacos:
+      discovery:
+        server-addr: '@nacos.address@'
+        namespace: nacos-example
+        group: ${spring.profiles.active}
+
+management.endpoints.web.exposure.include: "*"
