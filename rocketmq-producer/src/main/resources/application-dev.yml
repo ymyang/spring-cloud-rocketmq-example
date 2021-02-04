@@ -19,7 +19,7 @@ spring:
   cloud:
     stream:
       rocketmq:
-        binder.name-server: 127.0.0.1:9876
+        binder.name-server: 192.168.105.71:9876
         bindings:
           output1:
             producer:
