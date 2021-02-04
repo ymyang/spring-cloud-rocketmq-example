@@ -23,6 +23,7 @@ spring:
         bindings:
           input1:
             consumer:
+              # 指定顺序消费
               orderly: true
           input2:
             consumer:

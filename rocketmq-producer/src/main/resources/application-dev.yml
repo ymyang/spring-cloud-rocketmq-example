@@ -24,6 +24,7 @@ spring:
           output1:
             producer:
               group: binder-group
+              # 设置同步发送顺序消息
               sync: true
           output2:
             producer:
